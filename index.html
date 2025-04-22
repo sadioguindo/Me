@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terminal CV - Sadio Guindo</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #33ff33;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 20px;
+    }
+    #terminal {
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid #33ff33;
+      padding: 20px;
+      background-color: #111;
+    }
+    .line {
+      display: block;
+      margin: 5px 0;
+    }
+    #input-line {
+      display: flex;
+    }
+    #input-line span {
+      margin-right: 5px;
+    }
+    input {
+      background: none;
+      border: none;
+      color: #33ff33;
+      font-family: inherit;
+      outline: none;
+      width: 100%;
+    }
+    iframe {
+      margin-top: 10px;
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="terminal">
+    <div class="line">Bienvenue dans le terminal de <strong>Sadio Guindo</strong>.</div>
+    <div class="line">Tapez <code>help</code> pour voir les commandes disponibles.</div>
+    <div id="output"></div>
+    <div id="input-line">
+      <span>&gt;</span>
+      <input type="text" id="command" autofocus />
+    </div>
+  </div>
+
+  <script>
+    const output = document.getElementById('output');
+    const input = document.getElementById('command');
+
+    const commands = {help: `Commandes disponibles :<br>
+1. whoami - Infos personnelles<br>
+2. parcours - Parcours académique<br>
+3. experience - Expériences professionnelles<br>
+4. projets - Mes projets<br>
+5. skills - Mes compétences <br>
+5. langues - Langues<br>
+6. certifications - Certifications<br>
+7. video - Voir ma présentation vidéo<br>
+8. contact - Me contacter`,
+whoami: `Je suis Sadio Guindo, une passionnée de cybersécurité et d’intelligence artificielle. Ingénieure curieuse et engagée, je combine la technique, l’analyse et la créativité pour sécuriser les environnements numériques et innover avec éthique.`,
+languages: `
+1. Français : C2 <br>
+2. Anglais : B1 <br>
+3. Bambara : Langue native`,
+
+skills: `🛠️ <strong>Compétences techniques :</strong><br>
+   🔐 Cybersécurité : VPN, IDS/IPS, SIEM, TCP/IP, SSL/TLS, SSH, DNS, DHCP, pare-feu<br>
+   🧪 Pentest & Forensic : Metasploit, Nmap, Wireshark<br>
+   📊 Analyse & visualisation : Power BI, Tableau, Excel avancé<br>
+   💻 Dev & automation : Python, Bash, SQL, NoSQL, React.js, JavaScript, C++<br>
+   ☁️ Cloud & infra : AWS, Azure, Docker<br>
+   🧩 Normes : NIST, RGPD<br>
+   🖥️ Outils : Packet Tracer, Linux, Windows`,
+projets: `📚 <strong>Projets académiques :</strong><br>
+   🔍 <strong>Analyse Forensique Réseau :</strong> Analyse Telnet/NetBIOS, détection d'attaque DoS, Wireshark avancé<br>
+   🕵️ <strong>Capture The Flag :</strong> Metasploit, cracking de mots de passe, analyse de vulnérabilités<br>
+   🐛 <strong>Backdoor XZ (projet de groupe) :</strong> Reverse engineering, analyse binaire, mitigation`,
+certifications: `📄 <strong>Certifications :</strong><br>
+  • Cyber Threats Management – Cisco<br>
+  • Endpoint Security – Cisco<br>
+  • L’analyse des risques en cybersécurité – LinkedIn<br>
+  • Fondements de la cybersécurité – Cyber101`,
+parcours: `🎓 <strong>Parcours académique :</strong><br>
+• Master 1 Sciences des Données & Cybersécurité  – Université Paris 8<br>
+• Master 2 Cybersécurité – Université Belhadj Bouchaib, Algérie<br>
+• Licence Systèmes Informatiques – Université Belhadj Bouchaib, Algérie`,
+experience: `💼 <strong>Technicienne Informatique (Stage)</strong><br>
+📍 Ntic-Kalaban, Bamako – Mali | Juin – Septembre 2023 (sur site internet)<br><br>
+• Sensibilisation des clients aux bonnes pratiques en cybersécurité : mise à jour des logiciels, sauvegarde de données, gestion sécurisée des mots de passe, activation de l’authentification à deux facteurs (2FA), configuration d’antivirus et pare-feux.<br>
+• Installation et configuration de systèmes Windows et logiciels bureautiques.<br>
+• Activation de licences Microsoft et mise en conformité des environnements de travail.`,
+contact: `Email: sadio.cyber.ai@gmail.com<br>LinkedIn: <a href="https://www.linkedin.com/in/sadio-guindo-406128230/" target="_blank">https://www.linkedin.com/in/sadio-guindo-406128230/</a>`,
+      video: `<iframe src="https://player.vimeo.com/video/1076901780?h=c4ba209df6&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
+    };
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const command = input.value.trim().toLowerCase();
+        const response = commands[command] || `Commande inconnue : ${command}`;
+        output.innerHTML += `<div class="line">&gt; ${command}</div>`;
+        output.innerHTML += `<div class="line">${response}</div>`;
+        input.value = '';
+        output.scrollTop = output.scrollHeight;
+      }
+    });
+  </script>
+</body>
+</html>
